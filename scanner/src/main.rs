@@ -17,6 +17,7 @@ use std::time::Duration;
 
 const DEFAULT_INTERVAL_SECS: u64 = 3; // 10min
 const DEFAULT_RPC_RETRIES: usize = 3;
+const DEFAULT_BATCH_SZE: usize = 8;
 
 #[derive(Parser, Debug)]
 struct Args {

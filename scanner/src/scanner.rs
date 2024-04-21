@@ -7,6 +7,7 @@ use log::{error, info};
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
 use std::time::Duration;
+use crate::DEFAULT_BATCH_SZE;
 
 pub struct Fetcher {
     pub retries: usize,
@@ -25,7 +26,7 @@ impl Fetcher {
                         height, block_id, block.header.prev_blockhash
                     );
 
-                    // TODO: parse and save
+                    // TODO: parse header and save data to db.
 
                     Ok(())
                 }
@@ -132,7 +133,7 @@ impl Scanner {
             }
             false => {
                 let mut height = start;
-                let batch = (4 * self.fetcher.threads) as u64;
+                let batch = (DEFAULT_BATCH_SZE * self.fetcher.threads) as u64;
                 info!("Fast syncing...");
                 loop {
                     let cnt = self.range_scan(height, height + batch).await?;
