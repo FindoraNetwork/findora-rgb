@@ -1,0 +1,3 @@
+# FindoraRGB
+## Scanner
+## Indexer
