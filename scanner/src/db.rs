@@ -16,7 +16,7 @@ impl PgStorage {
     }
     pub async fn upsert_tip(&self, height: i64) -> Result<()> {
         sqlx::query(
-            "insert into evm_last_height values($1,$2) on conflict(tip) do update set height=$2",
+            "insert into btc_last_height values($1,$2) on conflict(tip) do update set height=$2",
         )
         .bind("tip")
         .bind(height)
